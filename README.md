@@ -120,6 +120,7 @@ def mood_description(mood: str):
     return moods.get(mood, "fala neutra.")
 
 python
+
 # ▶️ Troque acima Por algo do tipo como abaixo
 python
 character = CharacterConfig(
@@ -152,9 +153,7 @@ def mood_description(mood: str):
     return moods.get(mood, "fala neutra.")
 
 python
-Copiar código
-MODEL = "llama-3.1-8b-instant"
-Mas nada disso é necessário para rodar o projeto — já está tudo configurado.
+
 
 📁 Estrutura do Repositório
 bash
