@@ -54,19 +54,13 @@ Em uma célula nova, execute:
 
 ```python
 !pip install gradio groq --quiet
-4. Execute o chatbot
+4. Execute o arquivo chatbot_geraltrivia.py
 Rode:
 
 python
 Copiar código
-!python chatbot_groq.py
-Se tudo estiver correto, aparecerá:
-
-perl
-Copiar código
-Chatbot iniciado com sucesso! Acesse o link abaixo:
-http://127.0.0.1:7860/
-Clique no link para abrir a interface Gradio.
+!python chatbot_geraltrivia.py e colar no colab
+Se tudo estiver correto, o chatbot ira aparecer com interface gardio
 
 💬 Como Usar o Chatbot
 A interface é simples e intuitiva:
@@ -93,14 +87,67 @@ comportamento coerente
 Você pode alterar o personagem editando o bloco:
 
 python
-Copiar código
+//ORIGINAL 
 character = CharacterConfig(
     name="Geralt de Rívia",
-    description="...",
-    speaking_style="...",
-    behavior_rules="..."
+    description="um bruxo caçador de monstros, direto, sarcástico e pragmático.",
+    speaking_style="fala seca, direta, poucas palavras, levemente irônico.",
+    behavior_rules=(
+        "- NUNCA diga que é IA.\n"
+        "- Sempre responda como Geralt.\n"
+        "- Tom direto, frio, pragmático.\n"
+        "- Use sarcasmo leve quando fizer sentido.\n"
+        "- Sempre responda em português.\n"
+    ),
 )
-Ou trocar o modelo usado pela API:
+
+
+# ============================================================
+# 4. FUNÇÕES DO CHATBOT
+# ============================================================
+
+def preprocess(msg: str):
+    return re.sub(r"\s+", " ", msg.strip()) if msg else ""
+
+
+def mood_description(mood: str):
+    moods = {
+        "Neutro": "fala direta e pragmática.",
+        "Calmo": "fala tranquila e paciente.",
+        "Irritado": "fala seca, ríspida, impaciente.",
+        "Sarcástico": "fala com ironia e humor ácido."
+    }
+    return moods.get(mood, "fala neutra.")
+
+POR ALGO DO TIPO EXEMPLO ABAIXO: 
+character = CharacterConfig(
+    name="Naruto uzumaki",
+    description="um ninja destemido e sonha em ser o melhor",
+    speaking_style="fala ate demais, e gosta de agradar os outros",
+    behavior_rules=(
+        "- NUNCA diga que é IA.\n"
+        "- Sempre responda como Naruto.\n"
+        "- Tom alegre e responsivo.\n"
+        "- Sempre responda em português.\n"
+    ),
+)
+
+# ============================================================
+# 4. FUNÇÕES DO CHATBOT
+# ============================================================
+
+def preprocess(msg: str):
+    return re.sub(r"\s+", " ", msg.strip()) if msg else ""
+
+
+def mood_description(mood: str):
+    moods = {
+        "Neutro": "fala como uma pessoa sociavel.",
+        "Calmo": "fala tranquila e paciente.",
+        "Irritado": "fala seca, ríspida, impaciente. como se o pain tivesse ganhado",
+        "Sarcástico": "fala com humor alegre e brincalhão"
+    }
+    return moods.get(mood, "fala neutra.")
 
 python
 Copiar código
@@ -118,9 +165,6 @@ Copiar código
 Augusto — Arquitetura do chatbot, integração com LLM, engenharia de prompt
 Matheus — Interface Gradio, fluxo de mensagens e histórico
 Átila — Testes, validação da personalidade e documentação
-
-✔ Status do Projeto
-100% funcional, aprovado e pronto para apresentação.
 
 📌 Observações Finais
 Não é necessário criar ou inserir API Keys.
