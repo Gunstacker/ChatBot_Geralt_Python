@@ -87,7 +87,7 @@ comportamento coerente
 Você pode alterar o personagem editando o bloco:
 
 python
-//ORIGINAL 
+# ▶️ Original (referencia do bolco)
 character = CharacterConfig(
     name="Geralt de Rívia",
     description="um bruxo caçador de monstros, direto, sarcástico e pragmático.",
@@ -119,7 +119,9 @@ def mood_description(mood: str):
     }
     return moods.get(mood, "fala neutra.")
 
-POR ALGO DO TIPO EXEMPLO ABAIXO: 
+python
+# ▶️ Troque acima Por algo do tipo como abaixo
+python
 character = CharacterConfig(
     name="Naruto uzumaki",
     description="um ninja destemido e sonha em ser o melhor",
